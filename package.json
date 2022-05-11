@@ -19,10 +19,21 @@
   },
   "homepage": "https://github.com/zhounie/gulp-demo#readme",
   "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@babel/preset-env": "^7.17.10",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-typescript": "^8.3.2",
     "@types/gulp": "^4.0.9",
+    "@types/lodash": "^4.14.182",
     "gulp": "^4.0.2",
     "rollup": "^2.72.0",
     "ts-node": "^10.7.0",
+    "tslib": "^2.4.0",
     "typescript": "^4.6.4"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
   }
 }
