@@ -1,8 +1,8 @@
 {
-    "include": ["*"],
+    "include": ["src/*"],
     "exclude": ["node_modules"],
     "compilerOptions": {
-      "target": "esnext",
+      "target": "ES2015",
       "esModuleInterop": true
     }
 }

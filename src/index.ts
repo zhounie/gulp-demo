@@ -4,7 +4,7 @@ let string = 'world'
 import _ from 'lodash'
 
 let foo = (str: string) => {
-    console.log(`hello ${string}`)
+    console.log(`hello ${str}`)
 }
 foo(string)
 

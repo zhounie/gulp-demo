@@ -2,7 +2,7 @@ import { rollup, OutputOptions } from 'rollup'
 import path from 'path'
 import nodeResolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
-import babel from '@rollup/plugin-babel'
+import { babel } from '@rollup/plugin-babel'
 import typescript from '@rollup/plugin-typescript'
 
 const rootPath = path.resolve(__dirname, '..')
@@ -38,10 +38,12 @@ export const buildTs = async () => {
         input: `${srcPath}/index.ts`,
         plugins: [
             nodeResolve(),
-            typescript({ compilerOptions: { module: 'CommonJS' }}),
+            typescript(),
             commonjs(),
             babel({
                 babelHelpers: 'bundled',
+                extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
+                include: ['src/*'],
                 exclude: 'node_modules/**'
             })
         ]
