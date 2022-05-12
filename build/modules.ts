@@ -4,6 +4,12 @@ import nodeResolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import { babel } from '@rollup/plugin-babel'
 import typescript from '@rollup/plugin-typescript'
+import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import glob from 'fast-glob'
+import esbuild from 'rollup-plugin-esbuild'
+
+
 
 const rootPath = path.resolve(__dirname, '..')
 const srcPath = path.resolve(rootPath, 'src')
@@ -34,9 +40,12 @@ const buildConfig: Record<Module, OutputOptions> = {
 
 
 export const buildTs = async () => {
+    const input = await glob('src/**/*.{js,ts,vue}', {})
     const bundle = await rollup({
-        input: `${srcPath}/index.ts`,
+        input: input,
         plugins: [
+            vue(),
+            vueJsx(),
             nodeResolve(),
             typescript(),
             commonjs(),
@@ -45,6 +54,11 @@ export const buildTs = async () => {
                 extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
                 include: ['src/*'],
                 exclude: 'node_modules/**'
+            }),
+            esbuild({
+                loaders: {
+                    '.vue': 'ts'
+                }
             })
         ]
     })

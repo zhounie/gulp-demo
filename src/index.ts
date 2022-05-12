@@ -1,7 +1,7 @@
+import _ from 'lodash'
 const str = 'hello'
 var arr = ['1', '2', '3']
 let string = 'world'
-import _ from 'lodash'
 
 let foo = (str: string) => {
     console.log(`hello ${str}`)
