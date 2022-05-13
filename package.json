@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "gulp": "gulp",
     "babel": "babel",
-    "v": "gulp --version"
+    "v": "gulp --version",
+    "clear": "rimraf dist"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,7 @@
     "esbuild": "^0.14.39",
     "fast-glob": "^3.2.11",
     "gulp": "^4.0.2",
+    "rimraf": "^3.0.2",
     "rollup": "^2.72.0",
     "rollup-plugin-esbuild": "^4.9.1",
     "ts-node": "^10.7.0",

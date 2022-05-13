@@ -1,6 +1,6 @@
 import { rollup, OutputOptions } from 'rollup'
 import path from 'path'
-import nodeResolve from '@rollup/plugin-node-resolve'
+import { nodeResolve } from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import { babel } from '@rollup/plugin-babel'
 import typescript from '@rollup/plugin-typescript'
@@ -15,7 +15,7 @@ const rootPath = path.resolve(__dirname, '..')
 const srcPath = path.resolve(rootPath, 'src')
 const outputPath = path.resolve(rootPath, 'dist')
 
-type Module = ['esm', 'cjs', 'iife'][number]
+type Module = ['esm', 'cjs'][number]
 
 const buildConfig: Record<Module, OutputOptions> = {
     esm: {
@@ -24,15 +24,16 @@ const buildConfig: Record<Module, OutputOptions> = {
         sourcemap: true,
         entryFileNames: `[name].mjs`
     },
-    iife: {
-        format: 'iife',
-        dir: path.resolve(outputPath, 'iife'),
-        sourcemap: true,
-        entryFileNames: `[name].js`
-    },
+    // iife: {
+    //     format: 'iife',
+    //     dir: path.resolve(outputPath, 'iife'),
+    //     sourcemap: true,
+    //     entryFileNames: `[name].js`
+    // },
     cjs: {
         format: 'cjs',
         dir: path.resolve(outputPath, 'lib'),
+        exports: 'named',
         sourcemap: true,
         entryFileNames: `[name].js`
     }
@@ -60,7 +61,7 @@ export const buildTs = async () => {
                     '.vue': 'ts'
                 }
             })
-        ]
+        ],
     })
 
     Object.entries(buildConfig).map(async ([module, option]) => {
